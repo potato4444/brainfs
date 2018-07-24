@@ -9,6 +9,12 @@ import qualified Data.ByteString.Lazy       as B
 import qualified Data.ByteString.Lazy.Char8 as C
 
 
+fromBase b ds = fst . head . readInt b (`elem` ds) (idx ds)
+
+idx cs c = let Just x = elemIndex c cs in x
+
+chunksOf n = takeWhile (not . null) . unfoldr (Just . splitAt n)
+
 bin8 x = pad 8 '0' $ showIntAtBase 2 ("01"!!) x ""
 
 pad n x xs | l <- length xs = replicate (n-l) x ++ xs

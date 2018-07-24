@@ -8,7 +8,6 @@ module Languages.Binaryfuck ( binaryfuckDesc ) where
 !-}
 
 import Data.Char
-import Data.List
 import Data.Maybe
 import Numeric
 import qualified Data.Map as M
@@ -16,6 +15,7 @@ import qualified Data.Map as M
 import Core
 import Languages.Brainfuck
 import Types
+import Util
 
 
 binaryfuckDesc = bfDesc
@@ -64,6 +64,3 @@ bf2bin = (\x-> showIntAtBase 32 (alph!!) x "")
     '[' -> "110"
     ']' -> "111"
     _ -> ""
-
-  fromBase b alph = fst . head . readInt b (`elem` alph) (idx alph)
-  idx cs c = let Just x = elemIndex c cs in x
